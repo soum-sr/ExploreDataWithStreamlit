@@ -100,14 +100,15 @@ def main():
 			class_name = columns[-1]
 			column_name = st.selectbox("",columns)
 			st.write("#### Select type of plot: ")
-			plot_type = st.selectbox("", ["area", "kde", "bar"])
+			plot_type = st.selectbox("", ["kde", "box"])
 			if st.button("Generate"):
 				if plot_type == "kde":
 					st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
 					st.pyplot()
-
-
-
+				if plot_type == "box":
+					st.write(sns.boxplot(x=class_name, y=column_name, palette="husl", data=df))
+					st.pyplot()
+					
 
 	# Select plotting style: area, bar, line, hist, box
 
