@@ -43,7 +43,6 @@ def main():
 			st.dataframe(df.head(rows))
 
 	# Option to check the column names
-
 	if st.checkbox("Show dataset with selected columns"):
 		columns = df.columns.tolist()
 		st.write("### Select the columns to display")
@@ -76,7 +75,20 @@ def main():
 			st.write(sns.heatmap(df.corr(), annot=True,linewidths=0.5))
 			st.pyplot()
 
-	# Select column(s)=>>multiple like tags to plot
+	# Sequence plot for sequential dataset
+	if dataset_type == "Sequence":
+		columns = df.columns.tolist()
+		df.set_index(columns[0], inplace=True)
+		if st.checkbox("Plot Sequence Data"):
+			plot_type = st.selectbox("Select type of plot: ", ["area", "line", "bar"])
+			if st.button("Generate"):
+				if plot_type == "area":
+					st.area_chart(df)
+				if plot_type == "line":
+					st.line_chart(df)
+				if plot_type == "bar":
+					st.bar_chart(df)
+
 
 
 	# Select plotting style: area, bar, line, hist, box
