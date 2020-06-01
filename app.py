@@ -1,7 +1,8 @@
 import streamlit as st 
 import os
 import numpy as np 
-import pandas as pd 
+import pandas as pd
+import seaborn as sns 
 import matplotlib.pyplot as plt
 
 def select_dataset_file():
@@ -46,17 +47,26 @@ def main():
 		st.write(f'Rows: {df.shape[0]}')
 		st.write(f'Columns: {df.shape[1]}')
 
-	# Sumary of dataset
+	# description of dataset
 	if st.checkbox("Show description of dataset"):
 		st.write(df.describe())
 
-	# description of dataset
-	if st.checkbox("Show Value Counts of Target Columns"):
+	# Value count of target values
+	if st.checkbox("Show Value Counts and Pie Chart of Target Columns"):
 		st.write(df.iloc[:,-1].value_counts())
+		st.write(df.iloc[:,-1].value_counts().plot.pie(autopct="%1.1f%%"))
+		st.pyplot()
+
 	# Coorelation plot of dataset
+	if st.checkbox("Show Coorelation Plot"):
+		st.write("### Heatmap")
+		fig, ax = plt.subplots(figsize=(10,10))
+		st.write(sns.heatmap(df.corr(), annot=True,linewidths=0.5))
+		st.pyplot()
 
 	# Select column(s)=>>multiple like tags to plot
-
+	
+	
 	# Select plotting style: area, bar, line, hist, box
 
 if __name__ == '__main__':
