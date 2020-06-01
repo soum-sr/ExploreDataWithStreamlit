@@ -14,12 +14,12 @@ def select_dataset_file():
 def check_dataset_category(filename):
 	f_name = filename[11:]
 	regression = ['BostonHousing.csv']
-	sequence = ['livestock.csv','guinearice.csv']
+	timeseries = ['livestock.csv','guinearice.csv']
 	classification = ['wine.csv','iris.csv', 'Zoo.csv','abalone.csv','BreastCancer.csv']
 	if f_name in regression:
 		return 'Regression'
-	if f_name in sequence:
-		return 'Sequence'
+	if f_name in timeseries:
+		return 'TimeSeries'
 	if f_name in classification:
 		return 'Classification'
 
@@ -42,10 +42,13 @@ def main():
 		if rows > 0:
 			st.dataframe(df.head(rows))
 
+	if st.checkbox("Show list of Columns"):
+		st.write(df.columns.tolist())
+
 	# Option to check the column names
 	if st.checkbox("Show dataset with selected columns"):
 		columns = df.columns.tolist()
-		st.write("### Select the columns to display")
+		st.write("#### Select the columns to display:")
 		selected_cols = st.multiselect("", columns)
 		if len(selected_cols) > 0:
 			selected_df = df[selected_cols]
@@ -76,11 +79,12 @@ def main():
 			st.pyplot()
 
 	# Sequence plot for sequential dataset
-	if dataset_type == "Sequence":
+	if dataset_type == "TimeSeries":
 		columns = df.columns.tolist()
 		df.set_index(columns[0], inplace=True)
-		if st.checkbox("Plot Sequence Data"):
-			plot_type = st.selectbox("Select type of plot: ", ["area", "line", "bar"])
+		if st.checkbox("Plot Time Series Data"):
+			st.write("#### Select type of plot: ")
+			plot_type = st.selectbox("", ["area", "line", "bar"])
 			if st.button("Generate"):
 				if plot_type == "area":
 					st.area_chart(df)
@@ -88,6 +92,20 @@ def main():
 					st.line_chart(df)
 				if plot_type == "bar":
 					st.bar_chart(df)
+
+	if dataset_type == "Classification":
+		if st.checkbox("Visualize Columns"):
+			st.write("#### Select column to visualize: ")
+			columns = df.columns.tolist()
+			class_name = columns[-1]
+			column_name = st.selectbox("",columns)
+			st.write("#### Select type of plot: ")
+			plot_type = st.selectbox("", ["area", "kde", "bar"])
+			if st.button("Generate"):
+				if plot_type == "kde":
+					st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
+					st.pyplot()
+
 
 
 
