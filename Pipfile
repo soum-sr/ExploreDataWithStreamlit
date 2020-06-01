@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 pandas = "*"
 streamlit = "*"
-matplotlib = "*"
 seaborn = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.6"
