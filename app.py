@@ -38,12 +38,15 @@ def main():
 	# display the dataset
 	if st.checkbox("Show Dataset"):
 		st.write("### Enter the number of rows to view")
-		rows = st.number_input("", min_value=0,value=0)
+		rows = st.number_input("", min_value=0,value=5)
 		if rows > 0:
 			st.dataframe(df.head(rows))
 
-	if st.checkbox("Show list of Columns"):
+	if st.checkbox("Show list of columns"):
 		st.write(df.columns.tolist())
+	if st.checkbox("Show datatypes of each column"):
+		st.write(df.dtypes)
+
 
 	# Option to check the column names
 	if st.checkbox("Show dataset with selected columns"):
@@ -94,21 +97,29 @@ def main():
 					st.bar_chart(df)
 
 	if dataset_type == "Classification":
-		if st.checkbox("Visualize Columns"):
+		if st.checkbox("Visualize Columns wrt Classes"):
 			st.write("#### Select column to visualize: ")
 			columns = df.columns.tolist()
 			class_name = columns[-1]
 			column_name = st.selectbox("",columns)
 			st.write("#### Select type of plot: ")
-			plot_type = st.selectbox("", ["kde", "box"])
+			plot_type = st.selectbox("", ["kde","box", "violin","swarm"])
 			if st.button("Generate"):
 				if plot_type == "kde":
 					st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
 					st.pyplot()
+
 				if plot_type == "box":
 					st.write(sns.boxplot(x=class_name, y=column_name, palette="husl", data=df))
 					st.pyplot()
-					
+
+				if plot_type == "violin":
+					st.write(sns.violinplot(x=class_name, y=column_name, palette="husl", data=df))
+
+					st.pyplot()
+				if plot_type == "swarm":
+					st.write(sns.swarmplot(x=class_name, y=column_name, data=df,color="y", alpha=0.9))
+					st.pyplot()
 
 	# Select plotting style: area, bar, line, hist, box
 
