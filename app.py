@@ -120,7 +120,9 @@ def main():
 					st.write(sns.swarmplot(x=class_name, y=column_name, data=df,color="y", alpha=0.9))
 					st.pyplot()
 
-	# Select plotting style: area, bar, line, hist, box
+
+	sidebar_text = "<h1>Checkout the Source Code</h1><br><a href=\"https://github.com/soum-sr/ExploreDataWithStreamlit\" target=\"_blank\"><button style=\"font-family:monospace;font-weight:900;font-size:20px;margin-left:24%;border:none;border-radius:15px;padding:10px;background-color:#20C20E\">Click Here</button></a>"
+	st.sidebar.markdown(sidebar_text,unsafe_allow_html=True)
 
 if __name__ == '__main__':
 	main()
