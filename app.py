@@ -63,10 +63,10 @@ def main():
 
 	# Value count of target values
 	if dataset_type == 'Classification':
-		if st.checkbox("Show Value Counts and Pie Chart of Target Columns"):
-			st.write(df.iloc[:,-1].value_counts())
+		if st.checkbox("Show Pie Chart and Value Counts of Target Columns"):
 			st.write(df.iloc[:,-1].value_counts().plot.pie(autopct="%1.1f%%"))
 			st.pyplot()
+			st.write(df.iloc[:,-1].value_counts())
 
 	# Coorelation plot of dataset
 	if dataset_type == 'Regression' or dataset_type == 'Classification':
