@@ -3,8 +3,8 @@
 
 #### Checkout the app : https://explore-ml-dataset-streamlit.herokuapp.com/
 #### Checkout the article: https://digitaltesseract.com/2020/06/20/building-a-data-app-with-streamlit/
-<br/>
-<br/>
+ 
+ 
 ### Create a Virtual Environment in Python
 
 - Install virtualenv
