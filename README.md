@@ -1,11 +1,11 @@
 # ExploreDataWithStreamlit
-### Explore some standard machine learning datasets with streamlit
+<b> Explore some standard machine learning datasets with streamlit</b>
 
-### Checkout the app : https://explore-ml-dataset-streamlit.herokuapp.com/
-### Checkout the article: https://digitaltesseract.com/2020/06/20/building-a-data-app-with-streamlit/
-
-
-#### Create a Virtuan Environment
+#### Checkout the app : https://explore-ml-dataset-streamlit.herokuapp.com/
+#### Checkout the article: https://digitaltesseract.com/2020/06/20/building-a-data-app-with-streamlit/
+<br>
+<br>
+### Create a Virtuan Environment
 
 - Install virtualenv
 ```
@@ -25,11 +25,11 @@ source streamlitapp/bin/activate
 streamlitapp\Scripts\activate
 ```
 
-#### Install all packages used here
+### Install all packages used here
 ```
 pip install -r requirements.txt
 ```
-#### Run the app
+### Run the app
 ```
 streamlit run app.py
 ```
