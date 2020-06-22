@@ -16,11 +16,11 @@ pip install virtualenv
 virtualenv streamlitapp
 ```
 - Start the virtual environment
--- Linux/Mac
+ - Linux/Mac
 ```
 source streamlitapp/bin/activate
 ```
--- Windows
+ - Windows
 ```
 streamlitapp\Scripts\activate
 ```
